@@ -1,37 +1,43 @@
-import React, {Component,Icon,TextInput,View} from 'react';
+import {AppRegistry, StyleSheet, Text, TextInput, View} from 'react-native';
+import React, {Component} from 'react';
 import TaskList from './TaskList'
-// import styles from './Styles.css'
+import Icon from 'react-native-vector-icons/dist/Ionicons';
 
-
-class ExpandedApp extends Component {
+class ExpandedApp extends React.Component {
   handleClick = () => {
     //import('./moduleA')
     console.log("test");
   };
 
   render() {
-    return (<div className="ExpandedApp">
-      {/* <View style={styles.searchSection}>
-          <Icon style={styles.searchIcon} name="ios-search" size={20} color="#000"/>
-          <TextInput
-              style={styles.input}
-              placeholder="User Nickname"
-              onChangeText={(searchString) => {this.setState({searchString})}}
-              underlineColorAndroid="transparent"
-          />
-      </View> */}
-      <TaskList/>
-      <button onClick={this.handleClick} style={{
-          borderWidth: 1,
-          borderColor: 'rgba(0,0,0,0.2)',
-          width: 100,
-          height: 100,
-          backgroundColor: '#fff',
-          borderRadius: 100
-        }}></button>
-
+    return (<div>
+      <View style={styles.searchSection}>
+        <TextInput style={styles.input} placeholder="Add Task"
+          //onChangeText={(searchString) => {this.setState({searchString})}}
+          underlineColorAndroid="transparent"/>
+        <Icon.Button name="ios-eye"/>
+      </View>
     </div>);
   }
 }
+
+const styles = StyleSheet.create({
+  searchSection: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff'
+  },
+  input: {
+    flex: 1,
+    paddingTop: 10,
+    paddingRight: 10,
+    paddingBottom: 10,
+    paddingLeft: 0,
+    backgroundColor: '#fff',
+    color: '#424242'
+  }
+});
 
 export default ExpandedApp;
