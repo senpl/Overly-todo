@@ -5,13 +5,16 @@
   "dependencies": {
     "native-base": "^2.3.8",
     "react": "^16.2.0",
-    "react-data-components": "^1.2.0",
     "react-dom": "^16.2.0",
+    "react-native": "^0.53.0",
     "react-native-button": "^2.3.0",
+    "react-native-data-table": "^0.2.0",
+    "react-native-simple-table": "0.0.3",
     "react-native-vector-icons": "^4.5.0",
     "react-native-web": "^0.4.0",
     "react-redux": "^5.0.6",
     "react-scripts": "1.1.0",
+    "react-sortable-tree": "^2.0.1",
     "redux": "^3.7.2"
   },
   "scripts": {
