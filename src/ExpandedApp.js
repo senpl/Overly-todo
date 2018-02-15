@@ -1,7 +1,8 @@
 import {AppRegistry, StyleSheet, Text, TextInput, View} from 'react-native';
 import React, {Component} from 'react';
-import TaskList from './TaskList'
+import SearchableTasks from './SearchableTasks'
 import Icon from 'react-native-vector-icons/dist/Ionicons';
+import { Button } from 'react-native';
 
 class ExpandedApp extends React.Component {
   handleClick = () => {
@@ -17,6 +18,27 @@ class ExpandedApp extends React.Component {
           underlineColorAndroid="transparent"/>
         <Icon.Button name="ios-eye"/>
       </View>
+      <View style={styles.searchSection}>
+        <Button
+          onPress=""
+          title="Switch task context"
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
+        />
+        <Button
+          onPress=""
+          title="Sort by priority"
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
+        />
+        <Button
+          onPress=""
+          title="Sort by date"
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
+        />
+      </View>
+      <SearchableTasks />
     </div>);
   }
 }
