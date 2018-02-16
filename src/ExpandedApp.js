@@ -1,10 +1,18 @@
 import {AppRegistry, StyleSheet, Text, TextInput, View} from 'react-native';
 import React, {Component} from 'react';
-import SearchableTasks from './SearchableTasks'
+import ContextSelect from './ContextSelect';
+import SearchableTasks from './SearchableTasks';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
-import { Button } from 'react-native';
+import {Button} from 'react-native';
 
 class ExpandedApp extends React.Component {
+
+  state = {
+    visibility: "FullScreen", // FullScreen ToSelecterdSize Hidden
+    presentedDataState: 'All',
+    filterText: ''
+  }
+
   handleClick = () => {
     //import('./moduleA')
     console.log("test");
@@ -19,26 +27,11 @@ class ExpandedApp extends React.Component {
         <Icon.Button name="ios-eye"/>
       </View>
       <View style={styles.searchSection}>
-        <Button
-          onPress=""
-          title="Switch task context"
-          color="#841584"
-          accessibilityLabel="Learn more about this purple button"
-        />
-        <Button
-          onPress=""
-          title="Sort by priority"
-          color="#841584"
-          accessibilityLabel="Learn more about this purple button"
-        />
-        <Button
-          onPress=""
-          title="Sort by date"
-          color="#841584"
-          accessibilityLabel="Learn more about this purple button"
-        />
+        <ContextSelect/>
+        <Button onPress="" title="Sort by priority" color="#841584" accessibilityLabel="Learn more about this purple button"/>
+        <Button onPress="" title="Sort by date" color="#841584" accessibilityLabel="Learn more about this purple button"/>
       </View>
-      <SearchableTasks />
+      <SearchableTasks/>
     </div>);
   }
 }

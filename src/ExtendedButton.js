@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-class MainButton extends Component {
+class ExtendedButton extends Component {
 
   state = {
-    visibility: 'visible',
-    notification: 'lack'
+    extended: 'ExtendedToTask'//State: ExtendedToTask ExtendedToTaskWithSubtask Callapsed
+    // notification: 'lack'
   }
 
   handleClick = () => {
     //import('./moduleA')
-console.log("testMainButton");
+console.log("testExtendedButton");
       // .then(({ console.log("test2") }) => {
       //   // Use moduleA
       //   console.log("test3")

@@ -1,7 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 
-class App extends React.Component {
+class ContextSelect extends React.Component {
   state = {
     selectedOption: '',
   }
@@ -27,4 +27,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default ContextSelect;
