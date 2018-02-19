@@ -4,6 +4,9 @@ import ContextSelect from './ContextSelect';
 import SearchableTasks from './SearchableTasks';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 import {Button} from 'react-native';
+import AddTodo from '../containers/AddTodo';
+import VisibleTodoList from '../containers/VisibleTodoList';
+import Footer from './Footer';
 
 class ExpandedApp extends React.Component {
 
@@ -21,16 +24,18 @@ class ExpandedApp extends React.Component {
   render() {
     return (<div>
       <View style={styles.searchSection}>
-        <TextInput style={styles.input} placeholder="Add Task"
+        {/* <TextInput style={styles.input} placeholder="Add Task"
           //onChangeText={(searchString) => {this.setState({searchString})}}
-          underlineColorAndroid="transparent"/>
-        <Icon.Button name="ios-eye"/>
+          underlineColorAndroid="transparent"/> */}
+          <AddTodo />
+{/* <Icon.Button name="ios-eye"/> */}
       </View>
       <View style={styles.searchSection}>
         <ContextSelect/>
         <Button onPress="" title="Sort by priority" color="#841584" accessibilityLabel="Learn more about this purple button"/>
         <Button onPress="" title="Sort by date" color="#841584" accessibilityLabel="Learn more about this purple button"/>
       </View>
+      <Footer />
       <SearchableTasks/>
     </div>);
   }
