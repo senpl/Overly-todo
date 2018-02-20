@@ -1,21 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
-import './index.css';
-import registerServiceWorker from './registerServiceWorker';
+import './styles/index.css';
+import registerServiceWorker from './config/registerServiceWorker';
 import SearchableTasks from "./components/SearchableTasks";
 import ExpandedApp from './components/ExpandedApp';
-import ContextSelect from './components/ContextSelect';
-import TodoApp from './components/TodoApp';
-import configureStore from './store/configureStore';
-
+import App from './components/ContextSelect';
+import TaskTree from './components/TaskTree';
 
 // ReactDOM.render(<App />, document.getElementById('root'));
 // ReactDOM.render(<SearchableTasks />, document.getElementById('root'));
-ReactDOM.render(  <Provider store={configureStore()}>
-    {/* <TodoApp /> */}
-<ExpandedApp />
-  </Provider>
-, document.getElementById('root'));
+ReactDOM.render(<ExpandedApp />, document.getElementById('root'));
+// ReactDOM.render(<TaskTree />, document.getElementById('root'));
 
 registerServiceWorker();
