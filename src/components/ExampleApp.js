@@ -2,11 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactModal from 'react-modal';
 import TaskTree from './TaskTree'
-<<<<<<< HEAD
-=======
 import Draggable from 'react-draggable';
 import {Resizable, ResizableBox} from 'react-resizable';
->>>>>>> 83dd610d9f8a365ea8bdf76aecedb64f875a4eef
 
 class ExampleApp extends React.Component {
   constructor() {
@@ -29,14 +26,6 @@ class ExampleApp extends React.Component {
 
   render() {
     return (<div>
-<<<<<<< HEAD
-      <button onClick={this.handleOpenModal}>Trigger Modal</button>
-      <ReactModal isOpen={this.state.showModal} contentLabel="Minimal Modal Example test">
-        <button onClick={this.handleCloseModal}>Minimalize</button>
-        <TaskTree/>
-        <button onClick={this.handleCloseModal}>Minimalize</button>
-      </ReactModal>
-=======
       {/* <button onClick={this.handleOpenModal}>Trigger Modal</button> */}
       <Draggable handle=".handle" defaultPosition={{
           x: 0,
@@ -83,7 +72,6 @@ class ExampleApp extends React.Component {
   </ReactModal> */
       }
 
->>>>>>> 83dd610d9f8a365ea8bdf76aecedb64f875a4eef
     </div>);
   }
 }
