@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import {Card, CardItem, Body, Alert, Button, AppRegistry, StyleSheet, Text, TextInput, View, TouchableHighlight} from 'react-native';
-import SortableTree, { addNodeUnderParent, removeNodeAtPath, changeNodeAtPath} from 'react-sortable-tree';
+import {AsyncStorage, Card, CardItem, Body, Alert, Button, AppRegistry, StyleSheet, Text, TextInput, View, TouchableHighlight} from 'react-native';
+import SortableTree, { addNodeUnderParent, removeNodeAtPath, changeNodeAtPath } from 'react-sortable-tree';
 import App from './App';
+import store from 'react-native-simple-store';
 import 'react-sortable-tree/style.css'; // This only needs to be imported once in your app
 
 export default class TaskTree extends Component {
@@ -11,19 +12,31 @@ export default class TaskTree extends Component {
       searchString: '',
       searchFocusIndex: 0,
       searchFoundCount: null,
-      treeData: [],
+      treeData: [{ "title": "Star Wars", "subtitle": "Test 1"}],
+      test: [{ "title": "Nemo", "subtitle": "Test 2"}]
     };
-
   }
+  // componentDidMount = () => AsyncStorage.getItem('treeData').then((value) => this.setState({ 'treeData': value }))
+  //
+  // setName() {
+  //      let obj= [{ "title": "Nemo", "subtitle": "Test 2"}]
+  //      AsyncStorage.setItem('treeData', JSON.stringify(obj));
+  // }
+
   getData() {
-    return fetch('http://localhost:3000/data.json')
-      .then((response) => response.json())
-      .then((responseJson) => {
-        this.setState({treeData: responseJson.data});
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    // return fetch('http://localhost:3000/data.json')
+    //   .then((response) => response.json())
+    //   .then((responseJson) => {
+    //     this.setState({treeData: responseJson.data});
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });]
+    store.get('treeData')
+    .then((res) =>
+    	this.setState({treeData: res})
+    )
+
   }
 
   componentDidMount() {
@@ -59,13 +72,13 @@ export default class TaskTree extends Component {
       <div>
         <View style={styles.searchSection}>
           <Button
-            onPress=""
+            onPress={this.saveData}
             title="Switch task context"
             color="#841584"
             accessibilityLabel="Learn more about this purple button"
           />
           <Button
-            onPress=""
+            onPress={this.displayData}
             title="Sort by priority"
             color="#841584"
             accessibilityLabel="Learn more about this purple button"
@@ -79,17 +92,17 @@ export default class TaskTree extends Component {
         </View>
         <View style={styles.searchSection}>
           <TextInput style={styles.input} placeholder="Add Task"
-            onChangeText={(text) => this.setState({text})}
+            onChangeText= {(text) => this.setState({text})}
             value={this.state.text}
             underlineColorAndroid="transparent"/>
           <Button
             onPress={() =>
-              this.setState(state => ({
-                treeData: state.treeData.concat({
-                  title: `${this.state.text}`,
-                  subtitle: ''
-                }),
-              }))
+                {
+                    const obj = {"title": `${this.state.text}`, "subtitle": "Test 2"}
+                    store.push('treeData', obj)
+                    this.setState((state) =>({treeData: state.treeData.concat(obj)}))
+                }
+
             }
             title="Add"
           >
@@ -98,7 +111,7 @@ export default class TaskTree extends Component {
         <div style={{ height: 300 }}>
           <SortableTree
             treeData={this.state.treeData}
-            onChange={treeData => this.setState({ treeData })}
+            onChange={treeData =>this.setState({ treeData })}
             //
             // Custom comparison for matching during search.
             // This is optional, and defaults to a case sensitive search of
@@ -125,43 +138,9 @@ export default class TaskTree extends Component {
                   matches.length > 0 ? searchFocusIndex % matches.length : 0,
               })
             }
-            generateNodeProps={({ node, path }) => ({
-              buttons: [
-                <Button
-                  title="Add"
-                  onPress={() =>
-                    this.setState(state => ({
-                      treeData: addNodeUnderParent({
-                        treeData: state.treeData,
-                        parentKey: path[path.length - 1],
-                        expandParent: true,
-                        getNodeKey,
-                        newNode: {
-                          title: '',
-                          subtitle: ''
-                        },
-                      }).treeData,
-                    }))
-                  }
-                >
-                </Button>,
-                <Button
-                  title="Remove"
-                  onPress={() =>
-                    this.setState(state => ({
-                      treeData: removeNodeAtPath({
-                        treeData: state.treeData,
-                        path,
-                        getNodeKey,
-                      }),
-                    }))
-                  }
-                >
-                </Button>,
-              ],
-            })}
           />
         </div>
+
         <form
           style={{ display: 'inline-block' }}
           onSubmit={event => {
@@ -192,7 +171,13 @@ export default class TaskTree extends Component {
             title= ">"
             type="submit"
             disabled={!searchFoundCount}
-            onClick={selectNextMatch}
+            onPress={selectNextMatch}
+          >
+          </Button>
+          <Button
+            title= "Delete All"
+            type="button"
+            onPress={()=>store.delete('treeData')}
           >
           </Button>
           </View>
@@ -205,6 +190,7 @@ export default class TaskTree extends Component {
         </form>
       </div>
     );
+    store.push('treeData', this.state.treeData)
   }
 }
 
